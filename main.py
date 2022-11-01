@@ -1,5 +1,5 @@
 import discord
-from scheduler import *
+
 from music import *
 from gestures import *
 from nekoByte import *
@@ -148,7 +148,11 @@ async def backroom(ctx, user : discord.Member):
 
 
 @NekoByte.command()
-async def schedule(ctx):
+async def schedule_start(ctx):
+    embed=discord.Embed(title="Recordatorio Activado", description="Se recordará que deben de hacer estiramientos!!!!")
+    embed.set_thumbnail(url="https://i.pinimg.com/originals/bd/70/fb/bd70fbdab605d8cd9d4d4a2fb81530de.jpg")
+    embed.add_field(name="**Duración:**", value=f"Cada Hora ")
+    await ctx.send(embed=embed)
     reminder.start()
 
 @NekoByte.command()
@@ -156,11 +160,11 @@ async def schedule_stop(ctx):
     reminder.stop()
     await ctx.send(f"recordatorio desactivado!!!!!")
 
-@tasks.loop(seconds=3)
+@tasks.loop(seconds=10)
 async def reminder():
     channel_to_upload_to = NekoByte.get_channel(997715893079506974)
-    await channel_to_upload_to.send("recordatorio activado **@everyone**!!!!!")
-    print("achanta")
+    for i in range (5):
+        await channel_to_upload_to.send("recordatorio activado **@everyone**!!!!!")
 
 #music part:
 
